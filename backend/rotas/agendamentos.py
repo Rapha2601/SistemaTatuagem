@@ -5,10 +5,11 @@
 #            tatuador (duas chaves estrangeiras).
 # ============================================================
 
-from fastapi import APIRouter
+from fastapi import APIRouter, UploadFile, File
 from pydantic import BaseModel
 from typing import Optional
 from database import conectar
+import os
 
 router = APIRouter()
 
@@ -33,9 +34,13 @@ def criar_agendamento(agendamento: Agendamento):
         (agendamento.idcliente, agendamento.idtatuador, agendamento.dataagendamento,
          agendamento.horaagendamento, agendamento.descricaotatuagem, agendamento.valortatuagem)
     )
+    novo_id = cursor.lastrowid
     conn.commit()
     conn.close()
-    return {"mensagem": "Agendamento cadastrado com sucesso"}
+    return {
+        "mensagem": "Agendamento cadastrado com sucesso",
+        "idagendamento": novo_id
+    }
 
 # GET /agendamentos — lista todos os agendamentos, já com nome do cliente e do tatuador
 @router.get("/agendamentos")
@@ -103,3 +108,28 @@ def deletar_agendamento(id: int):
     conn.commit()
     conn.close()
     return {"mensagem": "Agendamento deletado com sucesso"}
+
+# POST /agendamentos/{id}/desenho — recebe a imagem do desenho aprovado
+@router.post("/agendamentos/{id}/desenho")
+async def upload_desenho(id: int, arquivo: UploadFile = File(...)):
+    nome_arquivo = f"{id}_{arquivo.filename}"
+    caminho = os.path.join("uploads", nome_arquivo)
+
+    conteudo = await arquivo.read()
+
+    with open(caminho, "wb") as f:
+        f.write(conteudo)
+
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute(
+        "UPDATE agendamento SET desenhoaprovado=%s WHERE idagendamento=%s",
+        (nome_arquivo, id)
+    )
+    conn.commit()
+    conn.close()
+
+    return {
+        "mensagem": "Desenho enviado com sucesso",
+        "arquivo": nome_arquivo
+    }

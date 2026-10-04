@@ -72,6 +72,7 @@ listarAgendamentos()
 
 // ─── Cadastrar e atualizar agendamentos ───
 formAgendamento.addEventListener('submit', async (e) => {
+
   e.preventDefault()
 
   const agendamento = {
@@ -87,18 +88,37 @@ formAgendamento.addEventListener('submit', async (e) => {
   }
 
   const idAgendamento = formAgendamento.dataset.idAgendamento
+  let idParaUpload = idAgendamento
 
   if (idAgendamento) {
+
     await fetch(`${API}/agendamentos/${idAgendamento}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(agendamento)
     })
+
   } else {
-    await fetch(`${API}/agendamentos`, {
+
+    const resposta = await fetch(`${API}/agendamentos`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(agendamento)
+    })
+
+    const dados = await resposta.json()
+    idParaUpload = dados.idagendamento
+  }
+
+  const arquivo = document.getElementById('desenho').files[0]
+
+  if (arquivo) {
+    const formData = new FormData()
+    formData.append('arquivo', arquivo)
+
+    await fetch(`${API}/agendamentos/${idParaUpload}/desenho`, {
+      method: 'POST',
+      body: formData
     })
   }
 
