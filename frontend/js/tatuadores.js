@@ -1,4 +1,5 @@
 const API = 'http://127.0.0.1:8000'
+protegerPagina()
 const formTatuador = document.getElementById('form-tatuador')
 const botaoSubmit = document.getElementById('btn-submit-tatuador')
 
@@ -11,7 +12,7 @@ function limparFormulario() {
 }
 
 async function carregarSenioridades() {
-  const resposta = await fetch(`${API}/senioridade`)
+  const resposta = await fetchAutenticado(`${API}/senioridade`)
   const senioridades = await resposta.json()
   const select = document.getElementById('idsenioridade')
   select.innerHTML = '<option value="">Senioridade...</option>'
@@ -23,7 +24,7 @@ async function carregarSenioridades() {
 carregarSenioridades()
 
 async function listarTatuadores() {
-  const resposta = await fetch(`${API}/tatuadores`)
+  const resposta = await fetchAutenticado(`${API}/tatuadores`)
   const tatuadores = await resposta.json()
   const corpo = document.getElementById('corpo-tabela')
   corpo.innerHTML = ''
@@ -47,7 +48,7 @@ async function listarTatuadores() {
 }
 
 async function carregarEstilos() {
-  const resposta = await fetch(`${API}/estilos`);
+  const resposta = await fetchAutenticado(`${API}/estilos`);
   const estilos = await resposta.json();
 
   const div = document.getElementById("listaEstilos");
@@ -86,7 +87,7 @@ formTatuador.addEventListener('submit', async (e) => {
   const idTatuador = formTatuador.dataset.idTatuador
 
    if (idTatuador) {
-    await fetch(`${API}/tatuadores/${idTatuador}`, {
+    await fetchAutenticado(`${API}/tatuadores/${idTatuador}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(tatuador)
@@ -96,14 +97,14 @@ formTatuador.addEventListener('submit', async (e) => {
       document.querySelectorAll('.estilo-checkbox:checked')
     ).map(cb => Number(cb.value))
 
-    await fetch(`${API}/tatuadores/${idTatuador}/estilos`, {
+    await fetchAutenticado(`${API}/tatuadores/${idTatuador}/estilos`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ idestilos: estilosSelecionados })
     })
 
   } else {
-    const resposta = await fetch(`${API}/tatuadores`, {
+    const resposta = await fetchAutenticado(`${API}/tatuadores`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(tatuador)
@@ -116,7 +117,7 @@ formTatuador.addEventListener('submit', async (e) => {
       document.querySelectorAll('.estilo-checkbox:checked')
     ).map(cb => Number(cb.value))
 
-    await fetch(`${API}/tatuadores/${novoId}/estilos`, {
+    await fetchAutenticado(`${API}/tatuadores/${novoId}/estilos`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ idestilos: estilosSelecionados })
@@ -134,7 +135,7 @@ async function preencherFormularioEdicao(tatuador) {
   document.getElementById('telefone').value = tatuador.telefone || ''
   document.getElementById('idsenioridade').value = tatuador.idsenioridade
 
-    const resposta = await fetch(`${API}/tatuadores/${tatuador.idtatuador}/estilos`)
+    const resposta = await fetchAutenticado(`${API}/tatuadores/${tatuador.idtatuador}/estilos`)
   const estilosDoTatuador = await resposta.json()
 
   document.querySelectorAll('.estilo-checkbox').forEach(cb => {
@@ -152,6 +153,6 @@ async function preencherFormularioEdicao(tatuador) {
 async function deletarTatuador(id) {
   if (!confirm('Tem certeza que deseja excluir este tatuador?')) return
 
-  await fetch(`${API}/tatuadores/${id}`, { method: 'DELETE' })
+  await fetchAutenticado(`${API}/tatuadores/${id}`, { method: 'DELETE' })
   listarTatuadores()
 }
