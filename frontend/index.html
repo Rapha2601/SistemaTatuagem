@@ -1,30 +1,163 @@
-html
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Estúdio de Tatuagem</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Conheça nosso estúdio de tatuagem, descubra diferentes estilos e encontre inspiração para sua próxima arte.">
+
+  <title>Estúdio Tatuagem | Arte na Pele</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <nav class="navbar navbar-dark bg-dark">
+  <header class="navbar">
     <div class="container">
-      <span class="navbar-brand">Estúdio de Tatuagem</span>
-      <div>
-        <a href="login.html" class="btn btn-light">Entrar</a>
-      </div>
+      <a href="index.html" class="navbar-brand">
+        ST<span>.</span> TATTOO
+      </a>
+
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#estilos">Estilos</a>
+        <a href="login.html" class="btn btn-outline">Entrar no sistema</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <div class="container py-5 text-center">
-    <h1 class="display-4">Seu estúdio, organizado do seu jeito</h1>
-    <p class="lead">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris.
-    </p>
-  </div>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">Estúdio de tatuagem</span>
 
-</body>
-</html>
+          <h1>
+            Sua história<br>
+            Sua pele<br>
+            <span>Sua arte</span>
+          </h1>
+
+          <p>
+            Acreditamos que cada tatuagem carrega uma história.
+            Nosso objetivo é transformar ideias, sentimentos e
+            inspirações em arte, com criatividade, dedicação e
+            atenção a cada detalhe.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#estilos" class="btn btn-primary">
+              Descubra os estilos
+            </a>
+
+            <a href="#sobre" class="btn btn-outline">
+              Conheça o estúdio
+            </a>
+          </div>
+
+          <div class="hero-note">
+            ARTE · IDENTIDADE · EXPRESSÃO
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="sobre">
+      <div class="container about-content">
+        <div>
+          <span class="eyebrow">Nossa essência</span>
+
+          <h2>Mais do que tatuagens, histórias para a vida toda.</h2>
+
+          <p>
+            Cada pessoa tem uma história única, e cada tatuagem
+            pode representar um momento, uma conquista ou uma
+            lembrança importante.
+          </p>
+
+          <p>
+            Nosso estúdio valoriza a criatividade, o cuidado com
+            os detalhes e a busca por uma arte que tenha significado
+            para cada cliente.
+          </p>
+        </div>
+
+        <div class="about-mark">
+          <span class="symbol" aria-hidden="true">✳</span>
+          <strong>ARTE NA PELE</strong>
+          <small>SEJA AUTÊNTICO</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="estilos">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Encontre sua inspiração</span>
+
+          <h2>Estilos que contam histórias.</h2>
+
+          <p>
+            Existem diferentes formas de expressar sua personalidade
+            através da tatuagem. Conheça alguns estilos populares.
+          </p>
+        </div>
+
+        
+        <div class="styles-grid">
+          <article class="style-card">
+            <span class="style-number">01 / CONTRASTE</span>
+            <h3>Blackwork</h3>
+            <p>
+              Tatuagens que utilizam tinta preta em áreas sólidas,
+              padrões e composições de forte impacto visual.
+            </p>
+          </article>
+
+          <article class="style-card">
+            <span class="style-number">02 / CORES</span>
+            <h3>Aquarela</h3>
+            <p>
+              Um estilo inspirado na pintura em aquarela, com cores
+              fluidas e efeitos que lembram pinceladas sobre a pele.
+            </p>
+          </article>
+
+          <article class="style-card">
+            <span class="style-number">03 / DETALHES</span>
+            <h3>Realismo</h3>
+            <p>
+              Desenhos com sombras, texturas e detalhes que buscam
+              reproduzir a aparência de pessoas, animais e objetos.
+            </p>
+          </article>
+
+          <article class="style-card">
+            <span class="style-number">04 / CLÁSSICO</span>
+            <h3>Old School</h3>
+            <p>
+              Traços marcantes, contornos fortes e cores tradicionais,
+              com desenhos clássicos da história da tatuagem.
+            </p>
+          </article>
+
+          <article class="style-card">
+            <span class="style-number">05 / SIMPLICIDADE</span>
+            <h3>Minimalista</h3>
+            <p>
+              Desenhos simples e objetivos, com poucos elementos
+              e composições que valorizam a essência da ideia.
+            </p>
+          </article>
+
+          <article class="style-card">
+            <span class="style-number">06 / CRIATIVIDADE</span>
+            <h3>Cartoon</h3>
+            <p>
+              Um estilo inspirado em desenhos animados, com traços
+              expressivos, cores vibrantes e personagens divertidos.
+            </p>
+          </article>
+        </div>

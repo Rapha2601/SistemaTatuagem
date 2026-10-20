@@ -1,46 +1,154 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard — Estúdio de Tatuagem</title>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: #111;
+      color: #eee;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      background: #1c1c1c !important;
+      border-bottom: 1px solid #383838;
+    }
+
+    .navbar-brand {
+      color: #d4af37 !important;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1100px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      color: #d4af37;
+      font-weight: bold;
+    }
+
+    .painel-card {
+      height: 100%;
+      padding: 25px;
+      background: #1c1c1c;
+      border: 1px solid #383838;
+      border-radius: 12px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .painel-card:hover {
+      transform: translateY(-4px);
+      border-color: #d4af37;
+    }
+
+    .btn {
+      padding: 12px;
+      border-radius: 7px;
+      font-weight: bold;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-success {
+      background: #d4af37;
+      border-color: #d4af37;
+      color: #111;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-success:hover {
+      background: #f0cc58;
+      border-color: #f0cc58;
+      color: #111;
+    }
+
+    .btn-outline-light:hover {
+      background: #d4af37;
+      border-color: #d4af37;
+      color: #111;
+    }
+
+    .descricao {
+      margin-top: 12px;
+      color: #aaa;
+      font-size: 14px;
+    }
+  </style>
 </head>
+
 <body>
 
-  <nav class="navbar navbar-dark bg-dark mb-4">
-    <div class="container">
+  <nav class="navbar navbar-dark mb-5">
+    <div class="container d-flex justify-content-between">
       <span class="navbar-brand">Estúdio de Tatuagem</span>
       <button onclick="sair()" class="btn btn-outline-light btn-sm">Sair</button>
     </div>
   </nav>
 
-  <div class="container">
-    <h1 class="mb-4">Painel</h1>
-    <div class="row g-3">
+  <main class="container pb-5">
+    <h1>Painel</h1>
+
+    <div class="row g-4">
+
       <div class="col-md-4">
-        <a href="clientes.html" class="btn btn-primary w-100 py-3">Clientes</a>
+        <div class="painel-card">
+          <a href="clientes.html" class="btn btn-primary w-100">Clientes</a>
+          <p class="descricao">Gerencie os clientes cadastrados.</p>
+        </div>
       </div>
+
       <div class="col-md-4">
-        <a href="tatuadores.html" class="btn btn-primary w-100 py-3">Tatuadores</a>
+        <div class="painel-card">
+          <a href="tatuadores.html" class="btn btn-primary w-100">Tatuadores</a>
+          <p class="descricao">Consulte e gerencie os tatuadores.</p>
+        </div>
       </div>
+
       <div class="col-md-4">
-        <a href="agendamentos.html" class="btn btn-primary w-100 py-3">Agendamentos</a>
+        <div class="painel-card">
+          <a href="agendamentos.html" class="btn btn-primary w-100">Agendamentos</a>
+          <p class="descricao">Acesse os horários e serviços agendados.</p>
+        </div>
       </div>
+
       <div class="col-md-4">
-        <a href="senioridade.html" class="btn btn-secondary w-100 py-3">Senioridade</a>
+        <div class="painel-card">
+          <a href="senioridade.html" class="btn btn-secondary w-100">Senioridade</a>
+          <p class="descricao">Consulte os níveis de experiência.</p>
+        </div>
       </div>
+
       <div class="col-md-4">
-        <a href="estilos.html" class="btn btn-secondary w-100 py-3">Estilos</a>
+        <div class="painel-card">
+          <a href="estilos.html" class="btn btn-secondary w-100">Estilos</a>
+          <p class="descricao">Gerencie os estilos de tatuagem.</p>
+        </div>
       </div>
+
       <div class="col-md-4">
-  <a href="cadastro.html" class="btn btn-success w-100 py-3">Novo Funcionário</a>
-</div>
+        <div class="painel-card">
+          <a href="cadastro.html" class="btn btn-success w-100">Novo Funcionário</a>
+          <p class="descricao">Cadastre uma conta de funcionário.</p>
+        </div>
+      </div>
+
     </div>
-  </div>
+  </main>
 
   <script src="js/auth.js"></script>
   <script>
-    protegerPagina()   // o dashboard também é protegido — sem login, não entra
+    protegerPagina();
   </script>
 
 </body>

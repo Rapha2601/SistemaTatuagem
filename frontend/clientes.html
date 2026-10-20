@@ -1,86 +1,244 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clientes — Estúdio de Tatuagem</title>
 
-  <!-- Bootstrap: biblioteca de estilos prontos -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #111;
+      color: #eee;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      background: #1c1c1c !important;
+      border-bottom: 1px solid #383838;
+    }
+
+    .navbar-brand {
+      color: #d4af37 !important;
+      font-weight: bold;
+    }
+
+    .navbar a {
+      text-decoration: none;
+    }
+
+    h1, h2 {
+      color: #d4af37;
+      font-weight: bold;
+    }
+
+    .card-painel {
+      padding: 25px;
+      margin-bottom: 30px;
+      background: #1c1c1c;
+      border: 1px solid #383838;
+      border-radius: 12px;
+    }
+
+    .form-control,
+    .form-select {
+      background-color: #242424;
+      color: #eee;
+      border: 1px solid #444;
+    }
+
+    .form-control::placeholder {
+      color: #aaa;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      background-color: #242424;
+      color: #fff;
+      border-color: #d4af37;
+      box-shadow: 0 0 0 0.2rem #d4af3733;
+    }
+
+    .form-control:disabled,
+    .form-control[readonly] {
+      background-color: #333;
+      color: #bbb;
+    }
+
+    .btn-primary,
+    .btn-success {
+      background: #d4af37;
+      border-color: #d4af37;
+      color: #111;
+      font-weight: bold;
+    }
+
+    .btn-primary:hover,
+    .btn-success:hover {
+      background: #f0cc58;
+      border-color: #f0cc58;
+      color: #111;
+    }
+
+    .btn-secondary {
+      background: #333;
+      border-color: #555;
+      color: #eee;
+    }
+
+    .btn-danger {
+      color: #fff;
+    }
+
+    .table {
+      --bs-table-bg: #1c1c1c;
+      --bs-table-color: #eee;
+      --bs-table-border-color: #444;
+      --bs-table-hover-bg: #292929;
+      --bs-table-hover-color: #fff;
+      vertical-align: middle;
+    }
+
+    .table th {
+      color: #d4af37;
+    }
+
+    .table td {
+      color: #eee;
+    }
+
+    label {
+      color: #ddd;
+    }
+
+    .btn-outline-light:hover {
+      background: #d4af37;
+      border-color: #d4af37;
+      color: #111;
+    }
+
+    @media (max-width: 768px) {
+      .navbar .container {
+        gap: 12px;
+      }
+
+      .navbar .container > div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .table {
+        font-size: 13px;
+      }
+
+      .card-painel {
+        padding: 16px;
+      }
+    }
+
+
+.navbar a,
+.navbar a:visited {
+  color: #bdbdbd;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #d4af37;
+}
+  </style>
 </head>
 
-<body class="container py-4">
+<body>
 
-  <nav class="navbar navbar-dark bg-dark mb-4">
-  <div class="container">
-    <span class="navbar-brand">Estúdio de Tatuagem</span>
-    <div>
-      <a href="clientes.html" class="text-light me-3">Clientes</a>
-      <a href="senioridade.html" class="text-light me-3">Senioridade</a>
-      <a href="tatuadores.html" class="text-light me-3">Tatuadores</a>
-      <a href="agendamentos.html" class="text-light me-3">Agendamentos</a>
-      <a href="estilos.html" class="text-light me-3">Estilos</a>
-      <button onclick="sair()" class="btn btn-outline-light me-3">Sair</button>
+  <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="dashboard.html">Estúdio de Tatuagem</a>
+
+      <div class="d-flex flex-wrap gap-3 align-items-center">
+        <a href="clientes.html">Clientes</a>
+        <a href="senioridade.html">Senioridade</a>
+        <a href="tatuadores.html">Tatuadores</a>
+        <a href="agendamentos.html">Agendamentos</a>
+        <a href="estilos.html">Estilos</a>
+        <button onclick="sair()" class="btn btn-outline-light btn-sm">Sair</button>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-  <h1>Clientes</h1>
+  <main class="container py-3">
 
-  <!-- Formulário para cadastrar novo cliente -->
-  <form id="form-cliente" class="row g-2 mt-2 mb-4">
+    <h1 class="mb-4">Clientes</h1>
 
-    <div class="col-md-3">
-      <input type="text" id="nome" class="form-control" placeholder="Nome" required>
-    </div>
+    <section class="card-painel">
+      <h2 class="h4 mb-4">Cadastrar cliente</h2>
 
-    <div class="col-md-2">
-      <input type="text" id="cpf" class="form-control" placeholder="CPF (só números)" required>
-    </div>
+      <form id="form-cliente">
+        <div class="row g-3">
 
-    <div class="col-md-2">
-      <input type="text" id="telefone" class="form-control" placeholder="Telefone">
-    </div>
+          <div class="col-md-6">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" id="nome" class="form-control" placeholder="Nome completo" required>
+          </div>
 
-    <div class="col-md-2">
-      <input type="text" id="cidade" class="form-control" placeholder="Cidade">
-    </div>
+          <div class="col-md-6">
+            <label for="cpf" class="form-label">CPF</label>
+            <input type="text" id="cpf" class="form-control" placeholder="CPF" required>
+          </div>
 
-    <div class="col-md-1">
-      <input type="text" id="uf" class="form-control" placeholder="UF" maxlength="2">
-    </div>
+          <div class="col-md-6">
+            <label for="telefone" class="form-label">Telefone</label>
+            <input type="text" id="telefone" class="form-control" placeholder="Telefone" required>
+          </div>
 
-    <div class="col-md-2">
-      <button id="btn-submit-cliente" type="submit" class="btn btn-primary w-100">Cadastrar</button>
-    </div>
+          <div class="col-md-4">
+            <label for="cidade" class="form-label">Cidade</label>
+            <input type="text" id="cidade" class="form-control" placeholder="Cidade" required>
+          </div>
 
-  </form>
+          <div class="col-md-2">
+            <label for="uf" class="form-label">UF</label>
+            <input type="text" id="uf" class="form-control" placeholder="UF" maxlength="2" required>
+          </div>
 
-  <!-- Tabela onde os clientes vão aparecer -->
-  <table class="table table-bordered">
+          <div class="col-12">
+            <button type="submit" id="btn-submit-cliente" class="btn btn-primary w-100">
+              Salvar cliente
+            </button>
+          </div>
 
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>CPF</th>
-        <th>Telefone</th>
-        <th>Cidade</th>
-        <th>UF</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
+        </div>
+      </form>
+    </section>
 
-    <tbody id="corpo-tabela">
-      <!-- os clientes vão aparecer aqui -->
-    </tbody>
+    <section class="card-painel">
+      <h2 class="h4 mb-4">Clientes cadastrados</h2>
 
-  </table>
+      <div class="table-responsive">
+        <table class="table table-dark table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Clientes</th>
+            </tr>
+          </thead>
+          <tbody id="corpo-tabela">
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-  <!-- Importa o arquivo JavaScript separado -->
+  </main>
+
   <script src="js/auth.js"></script>
   <script src="js/clientes.js"></script>
 
 </body>
-
 </html>

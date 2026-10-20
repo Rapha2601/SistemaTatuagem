@@ -3,62 +3,344 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Senioridade — Estúdio de Tatuagem</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --preto: #111111;
+      --fundo: #191919;
+      --cinza: #242424;
+      --cinza-claro: #bdbdbd;
+      --dourado: #d4af37;
+      --dourado-hover: #f0cc52;
+      --borda: #383838;
+      --branco: #f5f5f5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--preto);
+      color: var(--branco);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .navbar {
+      background: var(--fundo);
+      border-bottom: 1px solid var(--borda);
+      padding: 16px 5%;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .navbar-brand {
+      color: var(--dourado);
+      font-size: 21px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--cinza-claro);
+      font-size: 14px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--dourado);
+    }
+
+    .btn-sair {
+      padding: 8px 14px;
+      background: transparent;
+      color: var(--dourado);
+      border: 1px solid var(--dourado);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-sair:hover {
+      background: var(--dourado);
+      color: var(--preto);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 35px auto;
+    }
+
+    .titulo {
+      margin-bottom: 8px;
+      color: var(--dourado);
+      font-size: 30px;
+    }
+
+    .descricao {
+      margin-bottom: 28px;
+      color: var(--cinza-claro);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .card-formulario,
+    .card-tabela {
+      padding: 24px;
+      margin-bottom: 25px;
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 10px;
+    }
+
+    .card-formulario h2,
+    .card-tabela h2 {
+      margin: 0 0 20px;
+      color: var(--branco);
+      font-size: 19px;
+    }
+
+    .formulario {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .form-control {
+      width: 100%;
+      min-width: 0;
+      padding: 12px 14px;
+      background: var(--cinza);
+      color: var(--branco);
+      border: 1px solid var(--borda);
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .form-control::placeholder {
+      color: #858585;
+    }
+
+    .form-control:focus {
+      border-color: var(--dourado);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+    }
+
+    .btn-cadastrar {
+      padding: 12px 20px;
+      background: var(--dourado);
+      color: var(--preto);
+      border: 1px solid var(--dourado);
+      border-radius: 6px;
+      font-weight: bold;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-cadastrar:hover {
+      background: var(--dourado-hover);
+    }
+
+    .tabela-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: #302814;
+    }
+
+    th {
+      padding: 14px;
+      color: var(--dourado);
+      font-size: 13px;
+      text-align: left;
+      border-bottom: 1px solid var(--borda);
+    }
+
+    td {
+      padding: 13px 14px;
+      color: var(--branco);
+      font-size: 14px;
+      border-bottom: 1px solid var(--borda);
+    }
+
+    tbody tr:hover {
+      background: #202020;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Botões de ação da tabela */
+    #corpo-tabela .btn-warning {
+      background: transparent !important;
+      color: var(--dourado) !important;
+      border: 1px solid var(--dourado) !important;
+      border-radius: 6px;
+      padding: 7px 12px;
+      margin: 3px;
+      cursor: pointer;
+    }
+
+    #corpo-tabela .btn-warning:hover {
+      background: var(--dourado) !important;
+      color: var(--preto) !important;
+    }
+
+    #corpo-tabela .btn-danger {
+      background: transparent !important;
+      color: #ff6262 !important;
+      border: 1px solid #dc3545 !important;
+      border-radius: 6px;
+      padding: 7px 12px;
+      margin: 3px;
+      cursor: pointer;
+    }
+
+    #corpo-tabela .btn-danger:hover {
+      background: #dc3545 !important;
+      color: #ffffff !important;
+    }
+
+    @media (max-width: 800px) {
+      .nav-container {
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .container {
+        width: 94%;
+        margin-top: 24px;
+      }
+
+      .formulario {
+        flex-direction: column;
+      }
+
+      .btn-cadastrar {
+        width: 100%;
+      }
+
+      .card-formulario,
+      .card-tabela {
+        padding: 17px;
+      }
+
+      .titulo {
+        font-size: 26px;
+      }
+    }
+  </style>
 </head>
 
-<body class="container py-4">
+<body>
 
-    <nav class="navbar navbar-dark bg-dark mb-4">
-  <div class="container">
-    <span class="navbar-brand">Estúdio de Tatuagem</span>
-    <div>
-      <a href="clientes.html" class="text-light me-3">Clientes</a>
-      <a href="senioridade.html" class="text-light me-3">Senioridade</a>
-      <a href="tatuadores.html" class="text-light me-3">Tatuadores</a>
-      <a href="agendamentos.html" class="text-light me-3">Agendamentos</a>
-      <a href="estilos.html" class="text-light me-3">Estilos</a>
-      <button onclick="sair()" class="btn btn-outline-light me-3">Sair</button>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="dashboard.html" class="navbar-brand">ST. TATTOO</a>
+
+      <div class="nav-links">
+        <a href="clientes.html">Clientes</a>
+        <a href="senioridade.html">Senioridade</a>
+        <a href="tatuadores.html">Tatuadores</a>
+        <a href="agendamentos.html">Agendamentos</a>
+        <a href="estilos.html">Estilos</a>
+        <button onclick="sair()" class="btn-sair">Sair</button>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-  <h1>Senioridade</h1>
+  <main class="container">
 
-  <form id="form-senioridade" class="row g-2 mt-2 mb-4">
+    <h1 class="titulo">Senioridade</h1>
 
-    <div class="col-md-8">
-      <input type="text" id="nome" class="form-control" placeholder="Nome da senioridade" required>
-    </div>
+    <p class="descricao">
+      Gerencie os níveis de experiência dos profissionais do estúdio.
+    </p>
 
-    <div class="col-md-4">
-      <button id="btn-submit-senioridade" type="submit" class="btn btn-primary w-100">
-        Cadastrar
-      </button>
-    </div>
+    <section class="card-formulario">
+      <h2>Cadastrar senioridade</h2>
 
-  </form>
+      <form id="form-senioridade" class="formulario">
 
-  <table class="table table-bordered">
+        <input
+          type="text"
+          id="nome"
+          class="form-control"
+          placeholder="Nome da senioridade"
+          required
+        >
 
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
+        <button
+          id="btn-submit-senioridade"
+          type="submit"
+          class="btn-cadastrar"
+        >
+          Cadastrar
+        </button>
 
-    <tbody id="corpo-tabela">
-      <!-- as senioridades vão aparecer aqui -->
-    </tbody>
+      </form>
+    </section>
 
-  </table>
+    <section class="card-tabela">
+      <h2>Senioridades cadastradas</h2>
 
- <script src="js/auth.js"></script>
- <script src="js/senioridade.js"></script>
+      <div class="tabela-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+
+          <tbody id="corpo-tabela">
+            <!-- As senioridades vão aparecer aqui -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/senioridade.js"></script>
 
 </body>
-
 </html>

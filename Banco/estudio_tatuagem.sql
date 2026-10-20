@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13/10/2026 às 22:53
+-- Tempo de geração: 20/10/2026 às 15:15
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -95,7 +95,8 @@ INSERT INTO `estilo` (`idestilo`, `descricao`) VALUES
 (2, 'Aquarela'),
 (3, 'Realismo'),
 (4, 'Old School'),
-(5, 'Minimalista');
+(5, 'Minimalista'),
+(6, 'Cartoon');
 
 -- --------------------------------------------------------
 
@@ -185,7 +186,6 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idusuario`, `nome`, `email`, `senha`, `tipo`, `idcliente`) VALUES
 (1, 'Usuario Teste', 'teste@teste.com', '$2b$12$5nfwyYd1C9UAreuOwsh2Juy5qcPD64QxNhAPk/0bO5LOh1jxqRBrq', 'funcionario', NULL),
-(3, 'Teste', 'Teste1@gmail.com', '$2b$12$11k2YtjEmS98tv.MSTsEwe2JSAzNv0222H6HVK0B2PCJZx9lWHnli', 'funcionario', NULL),
 (4, 'Teste Login', 'teste.login@gmail.com', '$2b$12$LpWISS5CZyAztLwn.sJ29O71crntpOum4eNe3zoIxPEjflmh44XTG', 'funcionario', NULL),
 (5, 'Administrador', 'admin@estudio.com', '$2b$12$O1EugWmfhRuWNvmngS7hUeS2MBzdoDiyuaLbttQuo4usOfukAxyMy', 'admin', NULL),
 (6, 'Funcionario Teste', 'funcionario.teste@estudio.com', '$2b$12$hyg4yvFHP8mTM2pZJg5eC.ACDT9taDW357ks0.5heF/d3NqmomVda', 'funcionario', NULL);
@@ -264,7 +264,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de tabela `estilo`
 --
 ALTER TABLE `estilo`
-  MODIFY `idestilo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idestilo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `senioridade`
